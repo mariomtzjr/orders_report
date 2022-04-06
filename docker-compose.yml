@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: sh -c "python3 ./code/manage.py runserver 0.0.0.0:9091"
+    volumes:
+      - .:/code
+    ports:
+      - "9091:9091"
+    env_file:
+      - ./.dev.env
+    restart: on-failure
