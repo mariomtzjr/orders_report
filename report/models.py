@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import Optional
 
 from django.db import models
@@ -33,3 +34,18 @@ class Comensal:
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+@dataclass
+class Product:
+    """ Product class to store the product data
+    like object from the orders API.
+    """
+
+    id: int
+    name: str
+    quantity: int
+    unit_price: Decimal
+
+    def __str__(self):
+        return self.name
