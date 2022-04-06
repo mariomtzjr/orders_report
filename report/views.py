@@ -18,9 +18,12 @@ class OrderReportView(generics.ListAPIView):
         qs = self.get_queryset()
         data = []
         for order_entry in qs:
-            operador = Operador(**get_operator(order_entry.get("operador"))).__dict__
-            comensal = Comensal(**get_comensal(order_entry.get("comensal"))).__dict__
-            order_items_processed = [Product(**get_product(order_item.get("product"))).__dict__ for order_item in order_entry.get("order_items")]
+            operador = Operador(**get_operator(order_entry.get("operador").get("id"))).__dict__
+            comensal = Comensal(**get_comensal(order_entry.get("comensal").get("id"))).__dict__
+            
+            order_items_ = order_entry.get("order_items")
+           
+            order_items_processed = [Product(**get_product(order_item.get("id"))).__dict__ for order_item in order_items_]
 
             report_entry = ReportOrderEntry(
                 id=order_entry.get("id"),
