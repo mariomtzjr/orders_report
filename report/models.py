@@ -16,8 +16,6 @@ class Operador:
     first_name: str
     last_name: str
     email: Optional[str]
-    created_at: Optional[str]
-    updated_at: Optional[str]
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
